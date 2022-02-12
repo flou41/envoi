@@ -1,6 +1,5 @@
-input.calibrateCompass()
+radio.setGroup(2)
 basic.forever(function () {
-    radio.setGroup(2)
     while (input.buttonIsPressed(Button.A)) {
         radio.sendString("A")
     }
@@ -10,6 +9,14 @@ basic.forever(function () {
     while (input.buttonIsPressed(Button.AB)) {
         radio.sendString("AB")
     }
-    radio.sendValue("rotation x", input.rotation(Rotation.Pitch))
-    radio.sendValue("rotation y", input.rotation(Rotation.Roll))
+    if (input.rotation(Rotation.Roll) < -10 || input.rotation(Rotation.Roll) > 10) {
+        radio.sendValue("y", input.rotation(Rotation.Roll) * 100 / 80)
+    } else {
+        radio.sendValue("y", 0)
+    }
+    if (input.rotation(Rotation.Pitch) < -10 || input.rotation(Rotation.Pitch) > 10) {
+        radio.sendNumber(input.rotation(Rotation.Pitch) * 255 / 80)
+    } else {
+        radio.sendNumber(0)
+    }
 })
