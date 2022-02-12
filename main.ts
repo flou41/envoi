@@ -1,13 +1,13 @@
 radio.setGroup(2)
 basic.forever(function () {
-    while (input.buttonIsPressed(Button.A)) {
-        radio.sendString("A")
-    }
-    while (input.buttonIsPressed(Button.B)) {
-        radio.sendString("B")
-    }
-    while (input.buttonIsPressed(Button.AB)) {
+    if (input.buttonIsPressed(Button.AB)) {
         radio.sendString("AB")
+    } else if (input.buttonIsPressed(Button.B)) {
+        radio.sendString("B")
+    } else if (input.buttonIsPressed(Button.A)) {
+        radio.sendString("A")
+    } else {
+        radio.sendString("R")
     }
     if (input.rotation(Rotation.Roll) < -10 || input.rotation(Rotation.Roll) > 10) {
         radio.sendValue("y", input.rotation(Rotation.Roll) * 100 / 80)
