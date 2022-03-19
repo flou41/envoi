@@ -10,12 +10,12 @@ basic.forever(function () {
         radio.sendString("R")
     }
     if (input.rotation(Rotation.Roll) < -10 || input.rotation(Rotation.Roll) > 10) {
-        radio.sendValue("y", input.rotation(Rotation.Roll) * 130 / 80)
+        radio.sendValue("y", input.rotation(Rotation.Roll) * 100 / 80)
     } else {
         radio.sendValue("y", 0)
     }
     if (input.rotation(Rotation.Pitch) < -10 || input.rotation(Rotation.Pitch) > 10) {
-        radio.sendNumber(input.rotation(Rotation.Pitch) * 130 / 80)
+        radio.sendNumber(input.rotation(Rotation.Pitch) * 100 / 80)
     } else {
         radio.sendNumber(0)
     }
